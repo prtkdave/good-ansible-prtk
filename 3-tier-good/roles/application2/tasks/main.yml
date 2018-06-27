@@ -1,0 +1,12 @@
+---
+# tasks file for application2
+- name: check directory exist
+  file:
+    path: "{{ application2_path }}"
+    state: directory
+    mode: 0755
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.app2
+    dest: "{{ application2_path }}/index.html"

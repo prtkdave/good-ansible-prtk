@@ -1,0 +1,6 @@
+---
+# handlers file for app-tier
+- name: start {{ app_tier_package }}
+  service:
+    name: tomcat
+    state: started

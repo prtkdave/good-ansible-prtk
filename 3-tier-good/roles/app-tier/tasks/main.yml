@@ -1,0 +1,27 @@
+---
+# tasks file for app-tier
+- name: install {{ app_tier_package }}
+  yum:
+    name: "{{ app_tier_package }}"
+    state: latest
+
+- name: enable {{ app_tier_package }} at boot
+  service:
+    name: "{{ app_tier_package }}"
+    enabled: yes
+
+- name: create ansible {{ app_tier_package }} directory
+  file:
+    path: "{{ app_tier_root_dir_path }}"
+    state: directory
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.j2
+    dest: "{{ app_tier_root_dir_path }}/index.html"
+    mode: 0644
+
+- name: start {{ app_tier_package }}
+  service:
+    name: "{{ app_tier_package }}"
+    state: restarted

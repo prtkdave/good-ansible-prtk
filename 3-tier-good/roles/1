@@ -1,0 +1,21 @@
+---
+# tasks file for lb-tier
+- name: install {{ lb-tier_package }}
+  yum:
+    name: "{{ lb-tier_package }}"
+    state: latest
+
+- name: enable {{ lb-tier_package }}
+  service:
+    name: "{{ lb-tier_package }}"
+    state: started
+
+- name: configure {{ lb-tier_package }}
+  template:
+    src: haproxy.cfg.j2
+    dest: {{ lb-tier_config_path }}
+
+- name: restart {{ lb-tier_package }}
+  service:
+    name: "{{ lb-tier_package }}"
+    state: restarted

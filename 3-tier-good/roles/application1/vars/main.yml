@@ -1,0 +1,3 @@
+---
+# vars file for application1
+application1_path: /usr/share/tomcat/webapps/ansible/

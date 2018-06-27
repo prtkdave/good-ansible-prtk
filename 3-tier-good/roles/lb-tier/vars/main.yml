@@ -1,0 +1,4 @@
+---
+# vars file for lb-tier
+lb_tier_package: haproxy
+lb_tier_config_path: /etc/haproxy/haproxy.cfg
